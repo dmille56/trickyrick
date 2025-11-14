@@ -2,7 +2,7 @@
 
 import typer
 from rich.console import Console
-import cowsay
+import cowsay  # https://github.com/VaasuDevanS/cowsay-python
 
 from trickyrick import utils
 from trickyrick.drawings import rick
