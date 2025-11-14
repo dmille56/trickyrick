@@ -9,7 +9,7 @@
   outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
 
-      perSystem = { self, pkgs, system, ... }:
+      perSystem = { self', pkgs, system, ... }:
       let
         common = import ./nix/common.nix { inherit pkgs; };
       in 

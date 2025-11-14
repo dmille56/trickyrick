@@ -18,6 +18,8 @@ console = Console()
 # 5) acts like nothing is wrong
 # 6) another glitch appears that says "never gonna give"
 # 7) another glitch appears that says "never gonna give"
+# 8) It goes completely into the song
+# 9) Finishes and says "You've been rick rolled... visit here to roll others: [LINK]"
 
 
 @app.command()
