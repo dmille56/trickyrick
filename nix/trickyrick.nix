@@ -16,8 +16,11 @@ pkgs.python3Packages.buildPythonPackage rec {
   propagatedBuildInputs = [ common.myBuildPackages ];
 
   # if you need system libs or build tools:
-  # nativeBuildInputs = [ ];
-  
+  nativeBuildInputs = [ 
+    pkgs.python3Packages.setuptools
+    pkgs.python3Packages.wheel
+  ];
+
   # optional metadata
   meta = with pkgs.lib; {
     description = "TrickyRick ;)";

@@ -25,7 +25,7 @@
       };
       
       packages.${system} = {
-        trickyrick = import ./trickyrick.nix { inherit pkgs; };
+        trickyrick = import ./nix/trickyrick.nix { inherit pkgs; };
         default = self.packages.${system}.trickyrick;
       };
     };
