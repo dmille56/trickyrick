@@ -14,9 +14,12 @@ pkgs.python3Packages.buildPythonPackage rec {
   build-system = [ pkgs.python3Packages.setuptools ];
 
   propagatedBuildInputs = [ 
+    pkgs.python3Packages.wheel
+  ];
+
+  nativeBuildInputs = [
     pkgs.python3Packages.pytest
     pkgs.python3Packages.pytest-cov
-    pkgs.python3Packages.wheel
   ];
 
   meta = {

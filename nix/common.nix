@@ -7,13 +7,10 @@ in
 {
   # dependencies needed during build time
   myBuildPackages = [
-    (pkgs.python3.withPackages (python-pkgs: [
-      python-pkgs.typer
-      python-pkgs.terminaltexteffects
-      python-pkgs.textual
-      python-pkgs.textualeffects
-    ]))
-
+    pkgs.python3Packages.typer
+    pkgs.python3Packages.terminaltexteffects
+    pkgs.python3Packages.textual
+    pkgs.python3Packages.textualeffects
     python-cowsay
   ];
   

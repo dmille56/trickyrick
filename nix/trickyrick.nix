@@ -13,7 +13,7 @@ pkgs.python3Packages.buildPythonPackage rec {
   pyproject = true;
 
   # python dependencies from nixpkgs (if available)
-  propagatedBuildInputs = [ common.myBuildPackages ];
+  propagatedBuildInputs = common.myBuildPackages;
 
   # if you need system libs or build tools:
   nativeBuildInputs = [ 

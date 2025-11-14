@@ -13,10 +13,7 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        packages = [
-          common.myBuildPackages
-          common.myDevPackages
-        ];
+        packages = common.myBuildPackages ++ common.myDevPackages;
 
         shellHook = ''
           # so running the python module runs correctly
