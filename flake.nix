@@ -26,9 +26,6 @@
         packages.default = import ./nix/trickyrick.nix { inherit pkgs; };
       };
 
-      systems = [
-        # systems for which you want to build the `perSystem` attributes
-        "x86_64-linux"
-      ];
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
     };
 }
