@@ -3,27 +3,32 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = { self, nixpkgs }:
-    let 
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-      common = import ./nix/common.nix { inherit pkgs; };
-    in
-    {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = common.myBuildPackages ++ common.myDevPackages;
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
 
-        shellHook = ''
-          # so running the python module runs correctly
-          export PYTHONPATH="src"
-        '';
+      perSystem = { self, pkgs, system, ... }:
+      let
+        common = import ./nix/common.nix { inherit pkgs; };
+      in 
+      {
+        devShells.default = pkgs.mkShell {
+          packages = common.myBuildPackages ++ common.myDevPackages;
+
+          shellHook = ''
+            # so running the python module runs correctly
+            export PYTHONPATH="src"
+          '';
+        };
+        
+        packages.default = import ./nix/trickyrick.nix { inherit pkgs; };
       };
-      
-      packages.${system} = {
-        trickyrick = import ./nix/trickyrick.nix { inherit pkgs; };
-        default = self.packages.${system}.trickyrick;
-      };
+
+      systems = [
+        # systems for which you want to build the `perSystem` attributes
+        "x86_64-linux"
+      ];
     };
 }
