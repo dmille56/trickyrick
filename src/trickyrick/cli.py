@@ -2,13 +2,10 @@
 
 import typer
 from rich.console import Console
-
-from email.utils import formataddr
-from smtplib import SMTP_SSL, SMTPException
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+import cowsay
 
 from trickyrick import utils
+from trickyrick.drawings import rick
 
 app = typer.Typer()
 console = Console()
@@ -22,8 +19,6 @@ console = Console()
 # 6) another glitch appears that says "never gonna give"
 # 7) another glitch appears that says "never gonna give"
 
-import cowsay
-
 
 @app.command()
 def main():
@@ -31,7 +26,11 @@ def main():
     console.print("Replace this message by putting your code into trickyrick.cli.main")
     console.print("See Typer documentation at https://typer.tiangolo.com/")
     utils.do_something_useful()
+    txt = cowsay.draw("Never gonna give you up 🎶", rick, to_console=False)
+    txt2 = cowsay.get_output_string("beavis", "Hehehe")
     cowsay.cow("hello")
+    print(txt)
+    print(txt2)
 
 
 if __name__ == "__main__":
