@@ -22,6 +22,8 @@ console = Console()
 # 6) another glitch appears that says "never gonna give"
 # 7) another glitch appears that says "never gonna give"
 
+import cowsay
+
 
 @app.command()
 def main():
@@ -29,6 +31,7 @@ def main():
     console.print("Replace this message by putting your code into trickyrick.cli.main")
     console.print("See Typer documentation at https://typer.tiangolo.com/")
     utils.do_something_useful()
+    cowsay.cow("hello")
 
 
 if __name__ == "__main__":
