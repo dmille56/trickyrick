@@ -9,19 +9,13 @@
     let 
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      common = import ./nix/common.nix { inherit pkgs; };
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-         (pkgs.python3.withPackages (python-pkgs: [
-           python-pkgs.typer
-           python-pkgs.terminaltexteffects
-
-           python-pkgs.textual # :NOTE: try to use this so it'll run in browser + cli
-           python-pkgs.textualeffects
-
-           (import ./python-cowsay.nix)
-         ]))
+        packages = [
+          common.myBuildPackages
+          common.myDevPackages
         ];
 
         shellHook = ''
@@ -30,9 +24,9 @@
         '';
       };
       
-      # packages.${system} = {
-      #   trickyrick = import ./trickyrick.nix { inherit pkgs; };
-      #   default = self.packages.${system}.trickyrick;
-      # };
+      packages.${system} = {
+        trickyrick = import ./trickyrick.nix { inherit pkgs; };
+        default = self.packages.${system}.trickyrick;
+      };
     };
 }
